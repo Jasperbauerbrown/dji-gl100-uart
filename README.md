@@ -39,13 +39,29 @@ Approximate pixel coordinates in [`images/board_top.png`](images/board_top.png) 
 ## Not yet verified
 
 - **JTAG**: defaults are GPIO0–3 (TCK/TDI/TDO/TMS, pins B23/A28/B24/A29), on the bottom edge of the SoC near RESET_L (A23). Candidate test points are below the bottom-right of the footprint on the top side. Untested.
-- Whether the console accepts input, the U-Boot interrupt, and the shell are still to be documented.
+- **JTAG** remains untested.
+- The console accepting input, the U-Boot interrupt, and getting a shell are **now documented** — see [Further documentation](#further-documentation) below.
 
 ## Photos
 
 - [`images/board_top.png`](images/board_top.png): full top side
 - [`images/board_bottom.png`](images/board_bottom.png): full bottom side
 
+## Further documentation
+
+Continuing from the pad location above, [`docs/`](docs/) covers the rest of the path to a root
+shell and the firmware, and [`tools/`](tools/) has the scripts. Start at
+[`docs/00-overview.md`](docs/00-overview.md).
+
+- The console **accepts input**; **root login** works (`root` + DJI's shared firmware password). See [`docs/02-uart-console.md`](docs/02-uart-console.md).
+- The **U-Boot serial autoboot-abort is disabled** by DJI (`Press S` is vestigial) — log in to Linux instead.
+- The full **8 MB SPI flash can be dumped over the serial console** (no clip needed), md5-verified. See [`docs/04-dumping-over-serial.md`](docs/04-dumping-over-serial.md) and [`tools/serial_dump.py`](tools/serial_dump.py).
+- **Flash layout** (MTD map, A/B kernels): [`docs/03-flash-layout.md`](docs/03-flash-layout.md).
+- **Firmware internals** — A/B LZMA `uImage` kernels (non-standard LZMA props byte `0x6d`) with an **embedded `newc` cpio initramfs** (no squashfs); extracted OpenWrt Barrier Breaker 14.07 / kernel 3.10.49. See [`docs/05-firmware-internals.md`](docs/05-firmware-internals.md) and [`tools/unpack_firmware.py`](tools/unpack_firmware.py).
+- **Gotchas** — watchdog (don't `kill -STOP apsrv`), flaky AR6006 USB-wifi enumeration, MCU-side auto power-off, telnet gate: [`docs/06-gotchas-and-findings.md`](docs/06-gotchas-and-findings.md).
+
 ## License
 
 Text and images: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+Added documentation under `docs/` and `tools/`: same [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) unless noted.

@@ -1,0 +1,25 @@
+# Never commit flash dumps or anything extracted from them:
+# they contain per-unit serial / pairing / radio-cal (amt, art) and possibly Wi-Fi keys.
+*.bin
+*.img
+*.state.json
+dump*/
+out/
+rootfs*/
+extracted/
+vmlinux*
+_private/
+_manifest.txt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

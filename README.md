@@ -58,7 +58,8 @@ shell and the firmware, and [`tools/`](tools/) has the scripts. Start at
 - The full **8 MB SPI flash can be dumped over the serial console** (no clip needed), md5-verified. See [`docs/04-dumping-over-serial.md`](docs/04-dumping-over-serial.md) and [`tools/serial_dump.py`](tools/serial_dump.py).
 - **Flash layout** (MTD map, A/B kernels): [`docs/03-flash-layout.md`](docs/03-flash-layout.md).
 - **Firmware internals** — A/B LZMA `uImage` kernels (non-standard LZMA props byte `0x6d`) with an **embedded `newc` cpio initramfs** (no squashfs); extracted OpenWrt Barrier Breaker 14.07 / kernel 3.10.49. See [`docs/05-firmware-internals.md`](docs/05-firmware-internals.md) and [`tools/unpack_firmware.py`](tools/unpack_firmware.py).
-- **Gotchas** — watchdog (don't `kill -STOP apsrv`), flaky AR6006 USB-wifi enumeration, MCU-side auto power-off, telnet gate: [`docs/06-gotchas-and-findings.md`](docs/06-gotchas-and-findings.md).
+- **Gotchas** — watchdog (don't `kill -STOP apsrv`), flaky AR6006 USB-wifi enumeration, MCU auto power-off (hardware cut; **software keep-awake via evdev injection** works), telnet gate: [`docs/06-gotchas-and-findings.md`](docs/06-gotchas-and-findings.md).
+- **Network protocol & crypto** — TCP 19003/19005 framing (SW_Alg, **no handshake magic**), DUML XOR key table recovered, video path is plaintext H.264 over WiFi, no boot-time signature check: [`docs/07-network-protocol-and-crypto.md`](docs/07-network-protocol-and-crypto.md).
 
 ## License
 

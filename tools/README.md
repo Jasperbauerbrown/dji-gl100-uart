@@ -28,3 +28,9 @@ Output: `out/kernelN_vmlinux.bin` and `out/rootfsN/` (+ `_manifest.txt`).
 > Your dump and anything extracted from it contain **per-unit** data (serial, pairing, radio
 > calibration in the `amt`/`art` regions, and possibly Wi-Fi keys in the rootfs). **Do not commit
 > dumps or extracted trees** — `.gitignore` excludes them.
+
+## `rc_keepalive.sh`
+Runs **on the RC**. Stops the MCU auto power-off by injecting a small stick blip into
+`/dev/input/event0` every 30 s. Copy it to `/tmp` (paste it over the console) and start it with
+`sh /tmp/rc_keepalive.sh &`. It is RAM only, so start it again after each boot. ⚠️ It is real
+stick input: don't run it with an aircraft linked. See [`../docs/06-gotchas-and-findings.md`](../docs/06-gotchas-and-findings.md).

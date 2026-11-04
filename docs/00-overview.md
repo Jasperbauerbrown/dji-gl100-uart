@@ -32,7 +32,8 @@ the firmware image — i.e. the items the README listed as "not yet verified."
 - [`04-dumping-over-serial.md`](04-dumping-over-serial.md) — dumping 8 MB over a 115200 console, reliably.
 - [`05-firmware-internals.md`](05-firmware-internals.md) — uImage/LZMA quirks, embedded initramfs, rootfs contents.
 - [`06-gotchas-and-findings.md`](06-gotchas-and-findings.md) — watchdog, USB-wifi enumeration, auto power-off, telnet gate.
-- [`../tools/`](../tools/) — `serial_dump.py` and `unpack_firmware.py`.
+- [`07-network-protocol-and-crypto.md`](07-network-protocol-and-crypto.md) — TCP 19003/19005 SW_Alg framing, DUML XOR key table, video path, signature-check reality.
+- [`../tools/`](../tools/) — `serial_dump.py`, `unpack_firmware.py`, `rc_keepalive.sh`.
 
 ## Quick start
 
